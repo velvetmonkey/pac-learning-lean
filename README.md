@@ -1,5 +1,6 @@
 # pac-learning-lean
 
+[![thread](https://img.shields.io/badge/%F0%9F%A7%B5-how%20it%20works-1DA1F2)](https://x.com/thevelvetmonke)
 [![Lean 4](https://img.shields.io/badge/Lean-4.28.0-blue)](https://lean-lang.org/)
 [![Mathlib](https://img.shields.io/badge/Mathlib-v4.28.0-purple)](https://github.com/leanprover-community/mathlib4)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -19,6 +20,14 @@ m >= log(2 |H| / delta) / (2 epsilon^2).
 
 **Zero sorry statements.** Standard axioms only (`propext`, `Classical.choice`,
 `Quot.sound`).
+
+## What this is, and why it matters
+
+This library verifies the deterministic algebra behind a finite-hypothesis-class PAC sample bound. Its headline theorem, `pac_sample_complexity`, proves that the usual lower bound on `m` makes the defined expression `cardH * 2 * exp(-2*m*epsilon^2)` at most `delta`.
+
+The checked argument manipulates the sample inequality, uses monotonicity of the exponential, and simplifies the logarithmic inverse exactly. The library also defines Boolean empirical risk, proves it lies in `[0,1]` for a positive sample count, and provides a generic finite-sum upper-bound lemma.
+
+This is not yet a probabilistic PAC theorem. The Hoeffding quantity and PAC failure bound are deterministic definitions; the source does not model a probability space, iid samples, bad events, or prove that an actual failure probability is bounded by that expression. Those probabilistic links would be required before interpreting the result as a learner guarantee.
 
 ## Setting
 
